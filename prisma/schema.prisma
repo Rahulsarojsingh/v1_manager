@@ -1,0 +1,114 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Project {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  type        String
+  clientName  String
+  status      String
+  startDate   String
+  category    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  assets      Asset[]
+}
+
+model Asset {
+  id        String   @id @default(uuid())
+  projectId String
+  filename  String
+  type      String   // 'diagram' | 'document'
+  fileSize  Int
+  url       String?
+  uploadedAt DateTime @default(now())
+  
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+// Master Data Models
+
+model TeamMember {
+  id          String @id @default(uuid())
+  name        String
+  email       String
+  phone       String
+  designation String
+  department  String
+}
+
+model Designation {
+  id          String @id @default(uuid())
+  name        String
+  description String
+}
+
+model Department {
+  id          String @id @default(uuid())
+  name        String
+  description String
+}
+
+model Contractor {
+  id             String @id @default(uuid())
+  name           String
+  email          String
+  phone          String
+  address        String
+  specialization String
+}
+
+model Supplier {
+  id              String @id @default(uuid())
+  name            String
+  email           String
+  phone           String
+  address         String
+  productCategory String
+}
+
+model Vendor {
+  id          String @id @default(uuid())
+  name        String
+  email       String
+  phone       String
+  address     String
+  serviceType String
+}
+
+model Equipment {
+  id            String @id @default(uuid())
+  name          String
+  type          String
+  quantity      Int
+  status        String // 'Available' | 'In Use' | 'Maintenance'
+  ownershipType String // 'Owned' | 'Rented'
+}
+
+model Material {
+  id        String @id @default(uuid())
+  name      String
+  category  String
+  unit      String
+  quantity  Float
+  unitPrice Float
+}
