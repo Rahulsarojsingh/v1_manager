@@ -5,14 +5,35 @@ This is a full-stack project management application with a Next.js frontend and 
 ## Structure
 
 - **Frontend**: Next.js 14 (App Router), Tailwind CSS, Shadcn UI
-- **Backend**: FastAPI, SQLite, SQLAlchemy
+- **Backend**: FastAPI, PostgreSQL, SQLAlchemy
 
 ## Prerequisites
 
 - Node.js (v18 or higher)
 - Python (v3.10 or higher)
+- Docker & Docker Compose (optional, for containerized deployment)
 
-## Backend Setup
+## Docker Setup (Recommended)
+
+To run the entire application (Frontend + Backend + Database) using Docker:
+
+1.  **Ensure Docker Desktop is running.**
+2.  Run the following command in the project root:
+    ```bash
+    docker-compose up --build
+    ```
+3.  The application will be available at:
+    - Frontend: `http://localhost:3000`
+    - Backend Docs: `http://localhost:8000/docs`
+
+**Troubleshooting:**
+If you see an error like `The system cannot find the file specified` or `error during connect`, it means **Docker Desktop is not running**. Please start Docker Desktop and try again.
+
+## Local Development Setup
+
+If you prefer to run locally without Docker:
+
+### Backend Setup
 
 1. Navigate to the backend directory:
    ```bash
@@ -33,18 +54,22 @@ This is a full-stack project management application with a Next.js frontend and 
    pip install -r requirements.txt
    ```
 
-4. Run the server:
+4. Configure Database:
+   - Make sure you have PostgreSQL running locally.
+   - Update `.env` file with your local credentials.
+   - Or, revert `database.py` to use SQLite if you prefer.
+
+5. Run the server:
    ```bash
    python main.py
    ```
    The backend will start at `http://127.0.0.1:8000`.
 
-## Frontend Setup
+### Frontend Setup
 
-1. Navigate to the project root (if not already there):
+1. Navigate to the project root:
    ```bash
    cd ..
-   # or just stay in root
    ```
 
 2. Install dependencies:
@@ -63,7 +88,7 @@ This is a full-stack project management application with a Next.js frontend and 
 - **Authentication**: User signup and login with JWT.
 - **Project Management**: Create, update, delete projects.
 - **Master Data**: Manage Team Members, Contractors, Suppliers, etc.
-- **Data Persistence**: All data is stored in a local SQLite database (`backend/sql_app.db`).
+- **Data Persistence**: Data is stored in PostgreSQL (or SQLite if configured).
 
 ## API Documentation
 

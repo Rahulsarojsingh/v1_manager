@@ -21,6 +21,11 @@ origins = [
     "http://127.0.0.1:3001",
 ]
 
+# Add FRONTEND_URL from environment variable (for deployment)
+frontend_url = os.getenv("FRONTEND_URL")
+if frontend_url:
+    origins.append(frontend_url)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
