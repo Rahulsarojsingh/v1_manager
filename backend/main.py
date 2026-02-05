@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime, timedelta
 from typing import List
 import uvicorn
+import os
 from jose import JWTError, jwt
 
 models.Base.metadata.create_all(bind=engine)
