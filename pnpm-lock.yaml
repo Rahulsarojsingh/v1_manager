@@ -17,6 +17,9 @@ importers:
       '@nuxt/kit':
         specifier: latest
         version: 4.3.0
+      '@prisma/client':
+        specifier: ^5.22.0
+        version: 5.22.0(prisma@5.22.0)
       '@radix-ui/react-accordion':
         specifier: 1.2.2
         version: 1.2.2(@types/react-dom@19.2.3(@types/react@19.2.11))(@types/react@19.2.11)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -177,9 +180,6 @@ importers:
         specifier: 3.25.76
         version: 3.25.76
     devDependencies:
-      '@prisma/client':
-        specifier: ^5.22.0
-        version: 5.22.0(prisma@5.22.0)
       '@tailwindcss/postcss':
         specifier: ^4.1.9
         version: 4.1.18
