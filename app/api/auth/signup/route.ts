@@ -7,7 +7,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key'
 
 export async function POST(request: Request) {
   try {
-    const { email, password } = await request.json()
+    const { email, password, name } = await request.json()
 
     if (!email || !password) {
       return NextResponse.json(
@@ -40,7 +40,7 @@ export async function POST(request: Request) {
       data: {
         email,
         password: hashedPassword,
-        name: email.split('@')[0],
+        name: name || email.split('@')[0],
       },
     })
 
